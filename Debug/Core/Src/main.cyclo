@@ -1,0 +1,6 @@
+../Core/Src/main.c:63:7:ACS712_ReadCurrent	1
+../Core/Src/main.c:87:5:main	1
+../Core/Src/main.c:147:6:SystemClock_Config	3
+../Core/Src/main.c:193:13:MX_ADC1_Init	3
+../Core/Src/main.c:245:13:MX_GPIO_Init	1
+../Core/Src/main.c:279:6:Error_Handler	1
