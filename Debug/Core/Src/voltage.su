@@ -1,0 +1,5 @@
+../Core/Src/voltage.c:21:19:Voltage_StartDma	16	static
+../Core/Src/voltage.c:45:9:Voltage_IsFrameReady	4	static
+../Core/Src/voltage.c:65:6:Voltage_ClearFrameReady	4	static
+../Core/Src/voltage.c:91:7:Get_Voltage	24	static
+../Core/Src/voltage.c:120:6:HAL_ADC_ConvCpltCallback	16	static

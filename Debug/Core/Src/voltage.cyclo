@@ -1,0 +1,5 @@
+../Core/Src/voltage.c:21:19:Voltage_StartDma	1
+../Core/Src/voltage.c:45:9:Voltage_IsFrameReady	1
+../Core/Src/voltage.c:65:6:Voltage_ClearFrameReady	1
+../Core/Src/voltage.c:91:7:Get_Voltage	2
+../Core/Src/voltage.c:120:6:HAL_ADC_ConvCpltCallback	3
