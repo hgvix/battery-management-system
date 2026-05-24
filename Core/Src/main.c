@@ -109,16 +109,17 @@ int main(void)
   {
     if (Voltage_IsFrameReady())
     {
-      float a = Get_Voltage(0);
-      float b = Get_Voltage(1);
-      float c = Get_Voltage(2);
-      float d = Get_Voltage(3);
-      (void)a;
-      (void)b;
-      (void)c;
-      (void)d;
+      float V0 = Get_Voltage(0);
+      float V1 = Get_Voltage(1);
+      float V2 = Get_Voltage(2);
+      float V3 = Get_Voltage(3);
+      uprintln("Dien ap cell 1: %.2f mV", V0);
+      uprintln("Dien ap cell 2: %.2f mV", V1);
+      uprintln("Dien ap cell 3: %.2f mV", V2);
+      uprintln("Dien ap cell 4: %.2f mV", V3);
       Voltage_ClearFrameReady();
     }
+    HAL_Delay(3000);
 
     /* USER CODE END WHILE */
 
@@ -307,6 +308,7 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
 
   /* USER CODE END MX_GPIO_Init_1 */
@@ -314,6 +316,17 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, BC0_Pin|BC1_Pin|BC2_Pin|BC3_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : BC0_Pin BC1_Pin BC2_Pin BC3_Pin */
+  GPIO_InitStruct.Pin = BC0_Pin|BC1_Pin|BC2_Pin|BC3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

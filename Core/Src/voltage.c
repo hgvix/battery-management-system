@@ -87,6 +87,7 @@ void Voltage_ClearFrameReady(void)
  * @note
  * - Assumes Vref = 3.3V and ADC resolution = 4095.
  * - No bounds checking beyond channel index validation.
+ * - Unit: mV
  */
 float Get_Voltage(uint8_t channel)
 {
@@ -98,7 +99,7 @@ float Get_Voltage(uint8_t channel)
     }
 
     raw_value = adc_dma_buffer[channel];
-    return ((float)raw_value * 3.3f) / 4095.0f;
+    return (((float)raw_value * 3.3f) / 4095.0f)*1000;
 }
 
 
@@ -124,3 +125,14 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc)
         adc_frame_ready = 1U;
     }
 }
+
+
+// void Balance_Voltage(uint8_t channel)
+// {
+//     if (channel >= VOLTAGE_CHANNEL_COUNT)
+//     {
+//         return 0.0f;
+//     }
+
+
+// }

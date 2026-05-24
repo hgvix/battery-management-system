@@ -1,0 +1,5 @@
+../Core/Src/uart_debug.c:16:13:uart_send_str	16	static
+../Core/Src/uart_debug.c:21:6:uprint	472	static
+../Core/Src/uart_debug.c:180:6:uprintln	344	static
+../Core/Src/uart_debug.c:345:13:uint_to_str	48	static
+../Core/Src/uart_debug.c:389:13:float_to_str	80	static
