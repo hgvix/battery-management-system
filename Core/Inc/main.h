@@ -57,10 +57,36 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define Iin_out_Pin GPIO_PIN_5
-#define Iin_out_GPIO_Port GPIOA
-#define temp_Pin GPIO_PIN_6
-#define temp_GPIO_Port GPIOA
+#define V0_Pin GPIO_PIN_0
+#define V0_GPIO_Port GPIOA
+#define V1_Pin GPIO_PIN_1
+#define V1_GPIO_Port GPIOA
+#define V2_Pin GPIO_PIN_2
+#define V2_GPIO_Port GPIOA
+#define V3_Pin GPIO_PIN_3
+#define V3_GPIO_Port GPIOA
+#define V_OUT_Pin GPIO_PIN_4
+#define V_OUT_GPIO_Port GPIOA
+#define Charge_Signal_Pin GPIO_PIN_5
+#define Charge_Signal_GPIO_Port GPIOA
+#define Battery_Current_Pin GPIO_PIN_6
+#define Battery_Current_GPIO_Port GPIOA
+#define DisCharge_Current_Pin GPIO_PIN_7
+#define DisCharge_Current_GPIO_Port GPIOA
+#define Temperature_Pin GPIO_PIN_0
+#define Temperature_GPIO_Port GPIOB
+#define BC0_Pin GPIO_PIN_4
+#define BC0_GPIO_Port GPIOB
+#define BC1_Pin GPIO_PIN_5
+#define BC1_GPIO_Port GPIOB
+#define BC2_Pin GPIO_PIN_6
+#define BC2_GPIO_Port GPIOB
+#define BC3_Pin GPIO_PIN_7
+#define BC3_GPIO_Port GPIOB
+#define ChargeControl_Pin GPIO_PIN_8
+#define ChargeControl_GPIO_Port GPIOB
+#define DischargeControl_Pin GPIO_PIN_9
+#define DischargeControl_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

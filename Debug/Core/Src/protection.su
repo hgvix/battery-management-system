@@ -1,0 +1,5 @@
+../Core/Src/protection.c:6:6:ChargeMosfet_ON	8	static
+../Core/Src/protection.c:11:6:ChargeMosfet_OFF	8	static
+../Core/Src/protection.c:16:6:DischargeMosfet_ON	8	static
+../Core/Src/protection.c:21:6:DischargeMosfet_OFF	8	static
+../Core/Src/protection.c:26:6:BMS_Protection	32	static
