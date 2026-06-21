@@ -80,12 +80,13 @@ float batteryVoltage = 0;
 float dischargeVoltage = 0;
 float minCell = 0;
 float maxCell = 0;
-float currentOffset = 2.48;
-float dischargeCurrentOffset = 2.475;
+float currentOffset = 2.455;
+float dischargeCurrentOffset = 2.485;
 float Current = 0;
 float dischargeCurrent = 0;
 
 DS18B20_Name DS1;
+float Temp1;
 float Temp;
 
 uint8_t chargeSignal = 1;
@@ -153,7 +154,10 @@ int main(void)
 
 	chargeSignal = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
 
-	Temp = DS18B20_ReadTemp(&DS1);
+	Temp1 = DS18B20_ReadTemp(&DS1);
+	if (Temp1 < 100){
+		Temp = Temp1;
+	}
 	Current = ACS712_ReadCurrent(5,currentOffset);
 	dischargeCurrent = ACS712_ReadCurrent(6, dischargeCurrentOffset);
 	printf("Temp: %.2f C\r\n", Temp);

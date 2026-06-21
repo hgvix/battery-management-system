@@ -80,13 +80,13 @@ void Cell_ReadVoltage(float *cellVoltage, float *batteryVoltage)
         pointVoltage[i] = Read_Voltage(i);
     }
     //cell 1 lúc nào cũng sai 0.05, điện áp bị lệch do có trở giữa GND của MCU và GND của PACK, bù trừ bằng <dòng*trở>
-    cellVoltage[0] = pointVoltage[0] - (Current*0.25);
+    cellVoltage[0] = pointVoltage[0] + 0.02 - (0.3*Current);
     //cell 2 lúc nào cũng sai 0.03
-    cellVoltage[1] = pointVoltage[1] - pointVoltage[0] + 0.03;
+    cellVoltage[1] = pointVoltage[1] - pointVoltage[0] + 0.11 - (0.05*Current);
     //cell 3 lúc nào cũng sai 0.09
-    cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - 0.03;
+    cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - 0.01 - (0.07*Current);
     //cell 4 điện áp bị lệch do có trở giữa Cell 4(+) của đầu vào cầu phân áp và Cell 4(+) của PACK, bù trừ bằng <dòng*trở>
-    cellVoltage[3] = pointVoltage[3] - pointVoltage[2] - (Current*0.25) + 0.1;
+    cellVoltage[3] = pointVoltage[3] - pointVoltage[2] + 0.1 - (0.25*Current);
 
     *batteryVoltage = cellVoltage[0] + cellVoltage[1] + cellVoltage[2] + cellVoltage[3];
 }
