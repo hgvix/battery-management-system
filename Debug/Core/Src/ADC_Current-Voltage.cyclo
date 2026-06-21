@@ -1,0 +1,7 @@
+../Core/Src/ADC_Current-Voltage.c:3:10:ADC_GetAverage	2
+../Core/Src/ADC_Current-Voltage.c:15:6:ADC_UpdateVdda	1
+../Core/Src/ADC_Current-Voltage.c:24:6:ACS712_Calibrate	2
+../Core/Src/ADC_Current-Voltage.c:45:7:ACS712_ReadCurrent	3
+../Core/Src/ADC_Current-Voltage.c:67:7:Read_Voltage	1
+../Core/Src/ADC_Current-Voltage.c:74:6:Cell_ReadVoltage	2
+../Core/Src/ADC_Current-Voltage.c:94:6:Battery_GetMinMaxCellVoltage	4

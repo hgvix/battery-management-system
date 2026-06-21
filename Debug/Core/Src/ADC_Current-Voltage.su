@@ -1,0 +1,7 @@
+../Core/Src/ADC_Current-Voltage.c:3:10:ADC_GetAverage	24	static
+../Core/Src/ADC_Current-Voltage.c:15:6:ADC_UpdateVdda	16	static
+../Core/Src/ADC_Current-Voltage.c:24:6:ACS712_Calibrate	24	static
+../Core/Src/ADC_Current-Voltage.c:45:7:ACS712_ReadCurrent	32	static
+../Core/Src/ADC_Current-Voltage.c:67:7:Read_Voltage	24	static
+../Core/Src/ADC_Current-Voltage.c:74:6:Cell_ReadVoltage	48	static
+../Core/Src/ADC_Current-Voltage.c:94:6:Battery_GetMinMaxCellVoltage	32	static

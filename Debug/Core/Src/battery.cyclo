@@ -1,0 +1,7 @@
+../Core/Src/battery.c:38:14:VoltageToSOC	6
+../Core/Src/battery.c:65:6:Battery_Init	1
+../Core/Src/battery.c:82:6:Battery_Update	7
+../Core/Src/battery.c:126:6:Battery_Recalibrate	1
+../Core/Src/battery.c:133:6:Battery_UpdateSOH	2
+../Core/Src/battery.c:145:6:Battery_Measurement	9
+../Core/Src/battery.c:197:6:Battery_UpdateCellSOC	4
