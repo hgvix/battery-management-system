@@ -3624,8 +3624,8 @@ int main(void)
  800210c:	eef0 7a40 	vmov.f32	s15, s0
  8002110:	4b96      	ldr	r3, [pc, #600]	@ (800236c <main+0x344>)
  8002112:	edc3 7a00 	vstr	s15, [r3]
-	printf("Temp: %.2f C\r\n", Temp1);
- 8002116:	4b8f      	ldr	r3, [pc, #572]	@ (8002354 <main+0x32c>)
+	printf("Temp: %.2f C\r\n", Temp);
+ 8002116:	4b91      	ldr	r3, [pc, #580]	@ (800235c <main+0x334>)
  8002118:	681b      	ldr	r3, [r3, #0]
  800211a:	4618      	mov	r0, r3
  800211c:	f7fe fa1c 	bl	8000558 <__aeabi_f2d>
@@ -4814,7 +4814,7 @@ void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uin
 
     if(Current < -OVER_DISCHARGE_CURRENT_THRESHOLD)
  80028ca:	edd7 7a04 	vldr	s15, [r7, #16]
- 80028ce:	eeb9 7a04 	vmov.f32	s14, #148	@ 0xc0a00000 -5.0
+ 80028ce:	eeb8 7a08 	vmov.f32	s14, #136	@ 0xc0400000 -3.0
  80028d2:	eef4 7ac7 	vcmpe.f32	s15, s14
  80028d6:	eef1 fa10 	vmrs	APSR_nzcv, fpscr
  80028da:	d505      	bpl.n	80028e8 <BMS_Protection+0x68>
