@@ -87,7 +87,7 @@ float dischargeCurrent = 0;
 
 DS18B20_Name DS1;
 float Temp1;
-float Temp = 4095;
+float Temp = 85;
 
 uint8_t chargeSignal = 1;
 
