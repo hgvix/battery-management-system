@@ -40,6 +40,13 @@ void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uin
         printf("FAULT: OVER TEMPERATURE\r\n");
     }
 
+    if(Temp < UNDER_TEMP_THRESHOLD)
+    {
+        chargeEnable = 0;
+
+        printf("FAULT: UNDER CHARGE TEMPERATURE\r\n");
+    }
+
     /* Over Current */
 
     /* Over Discharge Current */

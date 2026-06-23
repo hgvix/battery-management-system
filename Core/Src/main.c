@@ -155,7 +155,7 @@ int main(void)
 	chargeSignal = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
 
 	Temp1 = DS18B20_ReadTemp(&DS1);
-	if (Temp1 < 100){
+	if (Temp1 < 85){
 		Temp = Temp1;
 	}
 	Current = ACS712_ReadCurrent(5,currentOffset);
