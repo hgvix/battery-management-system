@@ -24,7 +24,7 @@
 #define UNDER_TEMP_THRESHOLD     0.0f
 
 #define OVER_BATT_VOLT_THRESHOLD 4.2f
-#define UNDER_BATT_VOLT_THRESHOLD 2.7f
+#define UNDER_BATT_VOLT_THRESHOLD 3.2f
 
 void ChargeMosfet_ON(void);
 void ChargeMosfet_OFF(void);
