@@ -4,7 +4,7 @@
 #include "main.h"
 #include <stdio.h>
 
-#define BALANCE_START_VOLTAGE    3.7f
+#define BALANCE_START_VOLTAGE    4.0f
 #define BALANCE_DELTA_START      0.05f   // 50mV
 
 #define BALANCE_STOP_DELTA       0.02f   // 20mV
