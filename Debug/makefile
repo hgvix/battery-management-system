@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := battery-management-system
+BUILD_ARTIFACT_NAME := BatteryManagementSystem
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-battery-management-system.elf \
+BatteryManagementSystem.elf \
 
 MAP_FILES += \
-battery-management-system.map \
+BatteryManagementSystem.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-battery-management-system.list \
+BatteryManagementSystem.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: battery-management-system.elf secondary-outputs
+main-build: BatteryManagementSystem.elf secondary-outputs
 
 # Tool invocations
-battery-management-system.elf battery-management-system.map: $(OBJS) $(USER_OBJS) C:\Users\WV\Documents\Uni\KLTN\battery-management-system\STM32F401CCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "battery-management-system.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\WV\Documents\Uni\KLTN\battery-management-system\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery-management-system.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+BatteryManagementSystem.elf BatteryManagementSystem.map: $(OBJS) $(USER_OBJS) D:\DATN_X\Code\stm32\battery-management-system\STM32F401CCUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BatteryManagementSystem.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\DATN_X\Code\stm32\battery-management-system\STM32F401CCUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BatteryManagementSystem.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-battery-management-system.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "battery-management-system.list"
+BatteryManagementSystem.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BatteryManagementSystem.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) battery-management-system.elf battery-management-system.list battery-management-system.map default.size.stdout
+	-$(RM) BatteryManagementSystem.elf BatteryManagementSystem.list BatteryManagementSystem.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

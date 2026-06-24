@@ -2,4 +2,4 @@
 ../Core/Src/protection.c:11:6:ChargeMosfet_OFF	1
 ../Core/Src/protection.c:16:6:DischargeMosfet_ON	1
 ../Core/Src/protection.c:21:6:DischargeMosfet_OFF	1
-../Core/Src/protection.c:26:6:BMS_Protection	9
+../Core/Src/protection.c:26:6:BMS_Protection	10

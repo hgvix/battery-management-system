@@ -1,0 +1,4 @@
+../Core/Src/bms_protocol.c:13:16:crc8	4
+../Core/Src/bms_protocol.c:34:17:build_fault_mask	7
+../Core/Src/bms_protocol.c:63:16:build_state	4
+../Core/Src/bms_protocol.c:81:6:BMS_Transmit	1

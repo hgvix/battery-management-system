@@ -28,6 +28,7 @@
 #include "ADC_Current-Voltage.h"
 #include "balance.h"
 #include "battery.h"
+#include "bms_protocol.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -188,6 +189,8 @@ int main(void)
 	printf("Remaining = %.1f\r\n", battery.remainingCapacity_mAh);
 	printf("-------------------------\r\n");
 	printf("-------------------------\r\n");
+
+	BMS_Transmit(&huart1);
 
 	HAL_Delay(2000);
     /* USER CODE END WHILE */

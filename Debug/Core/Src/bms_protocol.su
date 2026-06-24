@@ -1,0 +1,4 @@
+../Core/Src/bms_protocol.c:13:16:crc8	24	static
+../Core/Src/bms_protocol.c:34:17:build_fault_mask	32	static
+../Core/Src/bms_protocol.c:63:16:build_state	16	static
+../Core/Src/bms_protocol.c:81:6:BMS_Transmit	184	static
