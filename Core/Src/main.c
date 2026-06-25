@@ -81,8 +81,8 @@ float batteryVoltage = 0;
 float dischargeVoltage = 0;
 float minCell = 0;
 float maxCell = 0;
-float currentOffset = 2.46;
-float dischargeCurrentOffset = 2.49;
+float currentOffset = 2.4175;
+float dischargeCurrentOffset = 2.45;
 float Current = 0;
 float dischargeCurrent = 0;
 
