@@ -56,7 +56,7 @@ float ACS712_ReadCurrent(uint8_t ADC_channel, float currentOffset)
     float current = (rawVoltage - currentOffset) / sensitivity;
 printf("rawVoltage: %.6f", rawVoltage);
     // deadband chống nhiễu
-    if(current > -0.0 && current < 0.05)
+    if(current > -0.05 && current < 0.05)
     {
         current = 0;
     }
