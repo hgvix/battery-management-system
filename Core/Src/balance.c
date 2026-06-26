@@ -50,7 +50,7 @@ void Balance_Control(float *cellVoltage, float temperature, float minCell, float
     {
         for(uint8_t i = 0; i < 4; i++)
         {
-            if(cellVoltage[i] > (minCell + BALANCE_DELTA_START))
+            if((cellVoltage[i] > (minCell + BALANCE_DELTA_START)) && cellVoltage[i] > BALANCE_START_VOLTAGE)
             {
                 balanceState[i] = 1;
             }

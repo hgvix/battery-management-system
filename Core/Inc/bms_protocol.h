@@ -83,7 +83,7 @@ typedef struct __attribute__((packed))
     uint16_t faults;               /* offset 63,  2 bytes  (bitmask, see BMS_FAULT_*) */
     uint8_t  state;                /* offset 65,  1 byte   (0 = idle, 1 = charging, 2 = discharging, 3 = fault, 4 = balancing) */
     uint8_t  balanceState[4];      /* offset 66,  4 bytes  (per-cell balance state, 0/1) */
-    uint8_t  _reserved[6];         /* offset 70,  6 bytes  (padding to 80 bytes)     */
+    uint8_t  _reserved[10];         /* offset 70,  6 bytes  (padding to 80 bytes)     */
 
 } BMS_Payload_t;
 

@@ -108,6 +108,10 @@ void BMS_Transmit(UART_HandleTypeDef *huart)
     payload.faults            = build_fault_mask(Temp, Current, minCell, maxCell);
 
     payload.state             = build_state(chargeSignal, chargeEnable, dischargeEnable, payload.faults);
+
+    for (uint8_t i = 0; i < 4; i++)
+        payload.balanceState[i] = Balance_GetState(i);
+
     memset(payload._reserved, 0, sizeof(payload._reserved));
 
     /* Build frame --------------------------------------------------------- */
