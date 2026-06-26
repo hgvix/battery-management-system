@@ -81,10 +81,12 @@ float batteryVoltage = 0;
 float dischargeVoltage = 0;
 float minCell = 0;
 float maxCell = 0;
-float currentOffset = 2.46;
-float dischargeCurrentOffset = 2.49;
+float currentOffset = 2.425;
+float dischargeCurrentOffset = 2.46;
 float Current = 0;
 float dischargeCurrent = 0;
+
+uint8_t balanceState[4];
 
 DS18B20_Name DS1;
 float Temp1;

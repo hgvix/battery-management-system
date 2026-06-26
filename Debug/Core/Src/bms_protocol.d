@@ -31,7 +31,8 @@ Core/Src/bms_protocol.o: ../Core/Src/bms_protocol.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Core/Inc/protection.h ../Core/Inc/battery.h ../Core/Inc/protection.h
+ ../Core/Inc/protection.h ../Core/Inc/battery.h ../Core/Inc/protection.h \
+ ../Core/Inc/balance.h
 ../Core/Inc/bms_protocol.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -68,3 +69,4 @@ Core/Src/bms_protocol.o: ../Core/Src/bms_protocol.c \
 ../Core/Inc/protection.h:
 ../Core/Inc/battery.h:
 ../Core/Inc/protection.h:
+../Core/Inc/balance.h:

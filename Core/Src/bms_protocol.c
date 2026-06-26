@@ -5,6 +5,7 @@
 
 #include "bms_protocol.h"
 #include "protection.h"
+#include "balance.h"
 
 /* -------------------------------------------------------------------------- */
 /*  CRC-8 (polynomial 0x31, init 0xFF, no reflection, no final XOR)           */
@@ -71,6 +72,13 @@ static uint8_t build_state(uint8_t chargeSignal, uint8_t chargeEnable, uint8_t d
     if (dischargeEnable)
         return 2;   /* DISCHARGING */
 
+    /* Check if any cell is balancing (idle + balancing active) */
+    for (uint8_t i = 0; i < 4; i++)
+    {
+        if (Balance_GetState(i))
+            return 4;   /* BALANCING */
+    }
+
     return 0;       /* IDLE */
 }
 
@@ -98,6 +106,7 @@ void BMS_Transmit(UART_HandleTypeDef *huart)
     payload.soc               = battery.soc;
     payload.soh               = battery.soh;
     payload.faults            = build_fault_mask(Temp, Current, minCell, maxCell);
+
     payload.state             = build_state(chargeSignal, chargeEnable, dischargeEnable, payload.faults);
     memset(payload._reserved, 0, sizeof(payload._reserved));
 
