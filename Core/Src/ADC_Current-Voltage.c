@@ -83,6 +83,10 @@ void Cell_ReadVoltage(float *cellVoltage, float *batteryVoltage)
     cellVoltage[1] = pointVoltage[1] - pointVoltage[0] - (0.08*Current) + 0.088;
     cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - (0.07*Current) - 0.01;
     cellVoltage[3] = pointVoltage[3] - pointVoltage[2] - (0.1578*Current) + 0.09;
+    cellVoltage[0] = pointVoltage[0] - (0.1775*Current) + 0.013;
+    cellVoltage[1] = pointVoltage[1] - pointVoltage[0] - (0.08*Current) + 0.088;
+    cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - (0.07*Current) - 0.01;
+    cellVoltage[3] = pointVoltage[3] - pointVoltage[2] - (0.1578*Current) + 0.09;
 
     *batteryVoltage = cellVoltage[0] + cellVoltage[1] + cellVoltage[2] + cellVoltage[3];
 }
