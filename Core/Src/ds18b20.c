@@ -32,17 +32,17 @@ static void DS18B20_SetPinOut(DS18B20_Name* DS18B20)
 {
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 	GPIO_InitStruct.Pin = DS18B20->Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(DS18B20->PORT, &GPIO_InitStruct);
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(DS18B20->PORT, &GPIO_InitStruct);
 }
 static void DS18B20_SetPinIn(DS18B20_Name* DS18B20)
 {
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 	GPIO_InitStruct.Pin = DS18B20->Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(DS18B20->PORT, &GPIO_InitStruct);
+	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	HAL_GPIO_Init(DS18B20->PORT, &GPIO_InitStruct);
 }
 static void DS18B20_WritePin(DS18B20_Name* DS18B20, uint8_t Value)
 {

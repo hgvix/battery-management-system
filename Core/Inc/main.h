@@ -73,8 +73,14 @@ void Error_Handler(void);
 #define Battery_Current_GPIO_Port GPIOA
 #define DisCharge_Current_Pin GPIO_PIN_7
 #define DisCharge_Current_GPIO_Port GPIOA
-#define Temperature_Pin GPIO_PIN_0
-#define Temperature_GPIO_Port GPIOB
+#define Temperature1_Pin GPIO_PIN_0
+#define Temperature1_GPIO_Port GPIOB
+#define Temperature2_Pin GPIO_PIN_12
+#define Temperature2_GPIO_Port GPIOB
+#define Temperature3_Pin GPIO_PIN_13
+#define Temperature3_GPIO_Port GPIOB
+#define Temperature4_Pin GPIO_PIN_14
+#define Temperature4_GPIO_Port GPIOB
 #define BC0_Pin GPIO_PIN_4
 #define BC0_GPIO_Port GPIOB
 #define BC1_Pin GPIO_PIN_5

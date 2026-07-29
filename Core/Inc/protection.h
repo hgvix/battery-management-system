@@ -30,6 +30,6 @@ void ChargeMosfet_ON(void);
 void ChargeMosfet_OFF(void);
 void DischargeMosfet_ON(void);
 void DischargeMosfet_OFF(void);
-void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uint8_t chargeSignal);
+void BMS_Protection(float maxTemp, float minTemp, float Current, float minCell, float maxCell, uint8_t chargeSignal);
 
 #endif /* INC_PROTECTION_H_ */

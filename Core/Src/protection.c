@@ -23,7 +23,7 @@ void DischargeMosfet_OFF(void)
     HAL_GPIO_WritePin(DISCHARGE_MOSFET_PORT, DISCHARGE_MOSFET_PIN, GPIO_PIN_RESET);
 }
 
-void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uint8_t chargeSignal)
+void BMS_Protection(float maxTemp, float minTemp, float Current, float minCell, float maxCell, uint8_t chargeSignal)
 {
     /* Default State */
 
@@ -32,7 +32,7 @@ void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uin
 
     /* Over Temperature */
 
-    if(Temp > OVER_TEMP_THRESHOLD)
+    if(maxTemp > OVER_TEMP_THRESHOLD)
     {
         chargeEnable = 0;
         dischargeEnable = 0;
@@ -40,7 +40,7 @@ void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uin
         printf("FAULT: OVER TEMPERATURE\r\n");
     }
 
-    if(Temp < UNDER_TEMP_THRESHOLD)
+    if(minTemp < UNDER_TEMP_THRESHOLD)
     {
         chargeEnable = 0;
 

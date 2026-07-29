@@ -15,7 +15,7 @@
 #define ADC_SAMPLES 1000
 extern uint16_t adcBuf[ADC_CHANNELS * ADC_SAMPLES];
 extern uint16_t adcBufProcess[ADC_CHANNELS * ADC_SAMPLES];
-#define sensitivity  0.1
+#define sensitivity  0.185
 extern float currentOffset;
 extern float g_vdda;
 

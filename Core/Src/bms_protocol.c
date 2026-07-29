@@ -32,14 +32,14 @@ static uint8_t crc8(const uint8_t *data, uint16_t len)
 /*  Helper: build the fault bitmask from current protection state              */
 /* -------------------------------------------------------------------------- */
 
-static uint16_t build_fault_mask(float Temp, float current, float minCell, float maxCell)
+static uint16_t build_fault_mask(float maxTemp, float minTemp, float current, float minCell, float maxCell)
 {
     uint16_t faults = BMS_FAULT_NONE;
 
-    if (Temp > OVER_TEMP_THRESHOLD)
+    if (maxTemp > OVER_TEMP_THRESHOLD)
         faults |= BMS_FAULT_OVER_TEMP;
 
-    if (Temp < UNDER_TEMP_THRESHOLD)
+    if (minTemp < UNDER_TEMP_THRESHOLD)
         faults |= BMS_FAULT_UNDER_TEMP;
 
     if (current < -OVER_DISCHARGE_CURRENT_THRESHOLD)
@@ -94,18 +94,18 @@ void BMS_Transmit(UART_HandleTypeDef *huart)
     /* Fill payload ------------------------------------------------------- */
     memcpy(payload.cellVoltage,    cellVoltage,    4 * sizeof(float));
     memcpy(payload.cellSOC,        battery.cellSOC, 4 * sizeof(float));
+    memcpy(payload.cellTemperature,        cellTemp, 4 * sizeof(float));
 
     payload.batteryVoltage    = batteryVoltage;
     payload.current           = Current;
     payload.dischargeCurrent  = dischargeCurrent;
     payload.dischargeVoltage  = dischargeVoltage;
-    payload.temperature       = Temp;
     payload.chargeSignal      = chargeSignal;
     payload.chargeEnable      = chargeEnable;
     payload.dischargeEnable   = dischargeEnable;
     payload.soc               = battery.soc;
     payload.soh               = battery.soh;
-    payload.faults            = build_fault_mask(Temp, Current, minCell, maxCell);
+    payload.faults            = build_fault_mask(maxCellTemp, minCellTemp, Current, minCell, maxCell);
 
     payload.state             = build_state(chargeSignal, chargeEnable, dischargeEnable, payload.faults);
 

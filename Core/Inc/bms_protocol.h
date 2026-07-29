@@ -22,7 +22,7 @@
 
 #define BMS_SYNC_BYTE      0xAA
 #define BMS_PACKET_ID      0x01
-#define BMS_PAYLOAD_SIZE   80
+#define BMS_PAYLOAD_SIZE   82
 #define BMS_PACKET_SIZE    (1 + 1 + 2 + BMS_PAYLOAD_SIZE + 1)  /* sync + id + len + payload + crc */
 
 /* -------------------------------------------------------------------------- */
@@ -48,7 +48,9 @@ extern float  minCell;
 extern float  maxCell;
 extern float  Current;
 extern float  dischargeCurrent;
-extern float  Temp;
+extern float  cellTemp[4];
+extern float maxCellTemp;
+extern float minCellTemp;
 extern uint8_t chargeSignal;
 extern uint8_t chargeEnable;
 extern uint8_t dischargeEnable;
@@ -67,7 +69,7 @@ typedef struct __attribute__((packed))
     float current;                 /* offset 20,  4 bytes  (charge current, A) */
     float dischargeCurrent;        /* offset 24,  4 bytes  (discharge current, A) */
     float dischargeVoltage;        /* offset 28,  4 bytes  (load voltage, V) */
-    float temperature;             /* offset 32,  4 bytes  (Celsius) */
+    float cellTemperature[4];             /* offset 32,  4 bytes  (Celsius) */
 
     /* Control signals / flags */
     uint8_t chargeSignal;          /* offset 36,  1 byte  (1 = no charger, 0 = charging) */

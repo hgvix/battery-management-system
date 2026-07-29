@@ -81,16 +81,22 @@ float batteryVoltage = 0;
 float dischargeVoltage = 0;
 float minCell = 0;
 float maxCell = 0;
-float currentOffset = 2.425;
-float dischargeCurrentOffset = 2.46;
+float currentOffset = 2.42;
+float dischargeCurrentOffset = 2.462;
 float Current = 0;
 float dischargeCurrent = 0;
 
 uint8_t balanceState[4];
 
+//thêm các biến để đo nhiệt độ tại 4 điểm,nhiệt độ lớn nhất
 DS18B20_Name DS1;
-float Temp1;
-float Temp = 85;
+DS18B20_Name DS2;
+DS18B20_Name DS3;
+DS18B20_Name DS4;
+float cellTemp[4] = {85, 85, 85, 85};
+float Temp;
+float maxCellTemp;
+float minCellTemp;
 
 uint8_t chargeSignal = 1;
 
@@ -139,7 +145,11 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)adcBufDMA, ADC_CHANNELS * ADC_SAMPLES);
   HAL_Delay(500);
   ADC_UpdateVdda();
+//  khởi tạo các cảm biến nhiệt độ
   DS18B20_Init(&DS1, &htim2, GPIOB, GPIO_PIN_0);
+  DS18B20_Init(&DS2, &htim2, GPIOB, GPIO_PIN_12);
+  DS18B20_Init(&DS3, &htim2, GPIOB, GPIO_PIN_13);
+  DS18B20_Init(&DS4, &htim2, GPIOB, GPIO_PIN_14);
 //  ACS712_Calibrate();
   Balance_Init();
 
@@ -157,13 +167,41 @@ int main(void)
 
 	chargeSignal = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_5);
 
-	Temp1 = DS18B20_ReadTemp(&DS1);
-	if (Temp1 < 85){
-		Temp = Temp1;
+//	tính toán giá trị nhiệt độ và tìm ra nhiệt độ cao nhất
+	Temp = DS18B20_ReadTemp(&DS1);
+	if (Temp < 85){
+		cellTemp[0] = Temp;
 	}
+	Temp = DS18B20_ReadTemp(&DS2);
+	if (Temp < 85){
+		cellTemp[1] = Temp;
+	}
+	Temp = DS18B20_ReadTemp(&DS3);
+	if (Temp < 85){
+		cellTemp[2] = Temp;
+	}
+	Temp = DS18B20_ReadTemp(&DS4);
+	if (Temp < 85){
+		cellTemp[3] = Temp;
+	}
+	maxCellTemp = cellTemp[0];
+	minCellTemp = cellTemp[0];
+	for (int i=0; i<4; i++)
+	{
+		if (cellTemp[i] > maxCellTemp)
+			maxCellTemp = cellTemp[i];
+		if (cellTemp[i] < minCellTemp)
+			minCellTemp = cellTemp[i];
+	}
+
 	Current = ACS712_ReadCurrent(5,currentOffset);
 	dischargeCurrent = ACS712_ReadCurrent(6, dischargeCurrentOffset);
-	printf("Temp: %.2f C\r\n", Temp);
+	printf("Max Temp: %.2f C\r\n", maxCellTemp);
+	printf("Min Temp: %.2f C\r\n", minCellTemp);
+	printf("Temp1: %.2f C\r\n", cellTemp[0]);
+	printf("Temp2: %.2f C\r\n", cellTemp[1]);
+	printf("Temp3: %.2f C\r\n", cellTemp[2]);
+	printf("Temp4: %.2f C\r\n", cellTemp[3]);
 	printf("Current: %.4f A\r\n", Current);
 	printf("Discharge Current: %.4f A\r\n", dischargeCurrent);
 
@@ -173,9 +211,10 @@ int main(void)
 
 	Battery_GetMinMaxCellVoltage(cellVoltage, &minCell, &maxCell);
 
-	Balance_Control(cellVoltage, Temp, minCell, maxCell, chargeSignal);
+//	thay đổi tham số đưa và từ Temp thành maxCellTemp
+	Balance_Control(cellVoltage, maxCellTemp, minCell, maxCell, chargeSignal);
 
-	BMS_Protection(Temp, Current, minCell, maxCell, chargeSignal);
+	BMS_Protection(maxCellTemp, minCellTemp, Current, minCell, maxCell, chargeSignal);
 
 	Battery_Measurement(Current, minCell, chargeSignal);
 
@@ -474,8 +513,9 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, Temperature_Pin|BC0_Pin|BC1_Pin|BC2_Pin
-                          |BC3_Pin|ChargeControl_Pin|DischargeControl_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, Temperature1_Pin|Temperature2_Pin|Temperature3_Pin|Temperature4_Pin
+                          |BC0_Pin|BC1_Pin|BC2_Pin|BC3_Pin
+                          |ChargeControl_Pin|DischargeControl_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : Charge_Signal_Pin */
   GPIO_InitStruct.Pin = Charge_Signal_Pin;
@@ -483,10 +523,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(Charge_Signal_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Temperature_Pin BC0_Pin BC1_Pin BC2_Pin
-                           BC3_Pin ChargeControl_Pin DischargeControl_Pin */
-  GPIO_InitStruct.Pin = Temperature_Pin|BC0_Pin|BC1_Pin|BC2_Pin
-                          |BC3_Pin|ChargeControl_Pin|DischargeControl_Pin;
+  /*Configure GPIO pins : Temperature1_Pin Temperature2_Pin Temperature3_Pin Temperature4_Pin
+                           BC0_Pin BC1_Pin BC2_Pin BC3_Pin
+                           ChargeControl_Pin DischargeControl_Pin */
+  GPIO_InitStruct.Pin = Temperature1_Pin|Temperature2_Pin|Temperature3_Pin|Temperature4_Pin
+                          |BC0_Pin|BC1_Pin|BC2_Pin|BC3_Pin
+                          |ChargeControl_Pin|DischargeControl_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
