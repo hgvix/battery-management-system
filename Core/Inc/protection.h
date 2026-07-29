@@ -17,18 +17,19 @@
 #define DISCHARGE_MOSFET_PORT GPIOB
 #define DISCHARGE_MOSFET_PIN  GPIO_PIN_9
 
-#define OVER_DISCHARGE_CURRENT_THRESHOLD    5.0f
-#define OVER_CHARGE_CURRENT_THRESHOLD       3.0f
+#define OVER_DISCHARGE_CURRENT_THRESHOLD    2.6f
+#define OVER_CHARGE_CURRENT_THRESHOLD       2.6f
 
 #define OVER_TEMP_THRESHOLD      60.0f
+#define UNDER_TEMP_THRESHOLD     0.0f
 
 #define OVER_BATT_VOLT_THRESHOLD 4.2f
-#define UNDER_BATT_VOLT_THRESHOLD 2.7f
+#define UNDER_BATT_VOLT_THRESHOLD 3.2f
 
 void ChargeMosfet_ON(void);
 void ChargeMosfet_OFF(void);
 void DischargeMosfet_ON(void);
 void DischargeMosfet_OFF(void);
-void BMS_Protection(float Temp, float Current, float minCell, float maxCell, uint8_t chargeSignal);
+void BMS_Protection(float maxTemp, float minTemp, float Current, float minCell, float maxCell, uint8_t chargeSignal);
 
 #endif /* INC_PROTECTION_H_ */

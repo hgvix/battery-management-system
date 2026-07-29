@@ -54,9 +54,9 @@ float ACS712_ReadCurrent(uint8_t ADC_channel, float currentOffset)
     rawVoltage = adcVoltage * 2.0;
 
     float current = (rawVoltage - currentOffset) / sensitivity;
-printf("rawVoltage: %.6f", rawVoltage);
+    printf("rawVoltage: %.6f", rawVoltage);
     // deadband chống nhiễu
-    if(current > -0.025 && current < 0.025)
+    if(current > -0.02 && current < 0.02)
     {
         current = 0;
     }
@@ -79,14 +79,14 @@ void Cell_ReadVoltage(float *cellVoltage, float *batteryVoltage)
     {
         pointVoltage[i] = Read_Voltage(i);
     }
-    //cell 1 lúc nào cũng sai 0.05, điện áp bị lệch do có trở giữa GND của MCU và GND của PACK, bù trừ bằng <dòng*trở>
-    cellVoltage[0] = pointVoltage[0] - (Current*0.25);
-    //cell 2 lúc nào cũng sai 0.03
-    cellVoltage[1] = pointVoltage[1] - pointVoltage[0] + 0.03;
-    //cell 3 lúc nào cũng sai 0.09
-    cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - 0.03;
-    //cell 4 điện áp bị lệch do có trở giữa Cell 4(+) của đầu vào cầu phân áp và Cell 4(+) của PACK, bù trừ bằng <dòng*trở>
-    cellVoltage[3] = pointVoltage[3] - pointVoltage[2] - (Current*0.25) + 0.1;
+    cellVoltage[0] = pointVoltage[0] - (0.1775*Current) + 0.013;
+    cellVoltage[1] = pointVoltage[1] - pointVoltage[0] - (0.08*Current) + 0.088;
+    cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - (0.07*Current) - 0.01;
+    cellVoltage[3] = pointVoltage[3] - pointVoltage[2] - (0.1578*Current) + 0.09;
+    cellVoltage[0] = pointVoltage[0] - (0.1775*Current) + 0.013;
+    cellVoltage[1] = pointVoltage[1] - pointVoltage[0] - (0.08*Current) + 0.088;
+    cellVoltage[2] = pointVoltage[2] - pointVoltage[1] - (0.07*Current) - 0.01;
+    cellVoltage[3] = pointVoltage[3] - pointVoltage[2] - (0.1578*Current) + 0.09;
 
     *batteryVoltage = cellVoltage[0] + cellVoltage[1] + cellVoltage[2] + cellVoltage[3];
 }

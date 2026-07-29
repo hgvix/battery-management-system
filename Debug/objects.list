@@ -1,6 +1,7 @@
 "./Core/Src/ADC_Current-Voltage.o"
 "./Core/Src/balance.o"
 "./Core/Src/battery.o"
+"./Core/Src/bms_protocol.o"
 "./Core/Src/delay_timer.o"
 "./Core/Src/ds18b20.o"
 "./Core/Src/main.o"

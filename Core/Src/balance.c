@@ -50,7 +50,7 @@ void Balance_Control(float *cellVoltage, float temperature, float minCell, float
     {
         for(uint8_t i = 0; i < 4; i++)
         {
-            if(cellVoltage[i] > (minCell + BALANCE_DELTA_START))
+            if((cellVoltage[i] > (minCell + BALANCE_DELTA_START)) && cellVoltage[i] > BALANCE_START_VOLTAGE)
             {
                 balanceState[i] = 1;
             }
@@ -63,7 +63,7 @@ void Balance_Control(float *cellVoltage, float temperature, float minCell, float
 
     /* Điều kiện tắt cân bằng */
 
-    if(delta < BALANCE_STOP_DELTA)
+    if((maxCell < BALANCE_START_VOLTAGE) || (delta < BALANCE_STOP_DELTA))
     {
         for(uint8_t i = 0; i < 4; i++)
         {
